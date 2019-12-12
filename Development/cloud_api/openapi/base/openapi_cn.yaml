@@ -386,6 +386,82 @@ paths:
                   - exception
                   - virtual_gateway_created
                   - has_no_permission
+  /user.companies.list:
+    get:
+      tags:
+        - user
+      summary: 获取当前用户所属的公司列表
+      operationId: listUserCompany
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.companies.quit:
+    post:
+      tags:
+        - user
+      summary: 从当前公司退出
+      operationId: quitUserCompany
+      parameters:
+        - name: company
+          in: path
+          description: 公司 ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.company_invitations.list:
+    get:
+      tags:
+        - user
+      summary: 获取公司邀请
+      operationId: listUserCompanyInvitation
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.company_invitations.accept:
+    post:
+      tags:
+        - user
+      summary: 接受公司邀请
+      operationId: acceptCompanyInvitation
+      parameters:
+        - name: name
+          in: path
+          description: 邀请 ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.company_invitations.reject:
+    post:
+      tags:
+        - user
+      summary: 拒绝公司邀请
+      operationId: rejectCompanyInvitation
+      parameters:
+        - name: name
+          in: path
+          description: 邀请 ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /{category}.activities.list:
     get:
       tags:
@@ -2660,7 +2736,7 @@ paths:
       parameters:
         - name: name
           in: query
-          description: User ID
+          description: 用户 ID
           required: true
           schema:
             type: string
@@ -2780,7 +2856,7 @@ paths:
             type: string
         - name: user
           in: query
-          description: User ID
+          description: 用户 ID
           required: true
           explode: true
           schema:
@@ -2806,7 +2882,7 @@ paths:
             type: string
         - name: user
           in: query
-          description: User ID
+          description: 用户 ID
           required: true
           explode: true
           schema:
@@ -3107,6 +3183,128 @@ paths:
         - name: name
           in: query
           description: 申请 ID
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.list:
+    get:
+      tags:
+        - companies
+      summary: 获取公司的应用列表
+      operationId: listCompanyApplications
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.read:
+    get:
+      tags:
+        - companies
+      summary: 获取应用详情
+      operationId: queryCompanyApplicationInfo
+      parameters:
+        - name: name
+          in: query
+          description: Application ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.update:
+    post:
+      tags:
+        - companies
+      summary: 更新应用信息
+      operationId: updateCompanyApplication
+      requestBody:
+        $ref: '#/components/requestBodies/Application'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.remove:
+    post:
+      tags:
+        - companies
+      summary: 删除应用
+      operationId: removeCompanyApplication
+      parameters:
+        - name: name
+          in: query
+          description: Application ID
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.list:
+    get:
+      tags:
+        - companies
+      summary: 获取公司的模板配置列表
+      operationId: listCompanyConfigurations
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.read:
+    get:
+      tags:
+        - companies
+      summary: 获取模板/配置的详细信息
+      operationId: queryCompanyConfigurationInfo
+      parameters:
+        - name: name
+          in: query
+          description: Configuration ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.update:
+    post:
+      tags:
+        - companies
+      summary: 更新模板/配置信息
+      operationId: updateCompanyConfiguration
+      requestBody:
+        $ref: '#/components/requestBodies/Configuration'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.remove:
+    post:
+      tags:
+        - companies
+      summary: 删除模板/配置
+      operationId: removeCompanyConfiguration
+      parameters:
+        - name: name
+          in: query
+          description: Configuration ID
           required: true
           explode: true
           schema:
@@ -4952,7 +5150,7 @@ components:
             - Admin
         enabled:
           type: integer
-          description: Enable flag.
+          description: 是否启用标志.
           default: 1
           enum:
             - 0
@@ -5000,28 +5198,28 @@ components:
       properties:
         user:
           type: string
-          description: User ID (email)
+          description: 用户 ID (email)
         comment:
           type: string
-          description: User Comment
+          description: 用户备注
     GatewayShareGroupDevice:
       type: object
       properties:
         device:
           type: string
-          description: Gateway ID (email)
+          description: 网关 ID (email)
     GatewayShareGroupNew:
       type: object
       properties:
         company:
           type: string
-          description: Company ID
+          description: 公司 ID
         group_name:
           type: string
-          description: Device share group name.
+          description: 设备共享组名称
         role:
           type: string
-          description: Cloud User Role (Admin).
+          description: 设备共享组用户权限
         users:
           type: array
           description: DeviceShareGroupUser.
@@ -5033,22 +5231,34 @@ components:
       properties:
         name:
           type: string
-          description: Share group id
+          description: 设备共享组 ID
         company:
           type: string
-          description: Company ID
+          description: 公司 ID
         group_name:
           type: string
-          description: Device share group name.
+          description: 设备共享组名称
         role:
           type: string
-          description: Cloud User Role (Admin).
+          description: 设备共享组用户权限
         users:
           type: array
           description: DeviceShareGroupUser.
         devices:
           type: array
           description: DeviceShareGroupDevice.
+    CompanyInvitation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 邀请 ID
+        company:
+          type: string
+          description: 公司 ID
+        user:
+          type: string
+          description: 用户 ID
   requestBodies:
     UserSignup:
       content:
@@ -5210,6 +5420,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GatewayShareGroup'
+    CompanyInvitation:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CompanyInvitation'
   responses:
     ApiResponse:
       description: successful operation

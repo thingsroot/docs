@@ -386,6 +386,82 @@ paths:
                   - exception
                   - virtual_gateway_created
                   - has_no_permission
+  /user.companies.list:
+    get:
+      tags:
+        - user
+      summary: List companies that current user belongs to
+      operationId: listUserCompany
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.companies.quit:
+    post:
+      tags:
+        - user
+      summary: List companies that current user belongs to
+      operationId: quitUserCompany
+      parameters:
+        - name: company
+          in: path
+          description: Company ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.company_invitations.list:
+    get:
+      tags:
+        - user
+      summary: List company invitations sent to current user
+      operationId: listUserCompanyInvitation
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.company_invitations.accept:
+    post:
+      tags:
+        - user
+      summary: Accept company invitation
+      operationId: acceptCompanyInvitation
+      parameters:
+        - name: name
+          in: path
+          description: Invitation ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /user.company_invitations.reject:
+    post:
+      tags:
+        - user
+      summary: Reject company invitation
+      operationId: rejectCompanyInvitation
+      parameters:
+        - name: name
+          in: path
+          description: Invitation ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /{category}.activities.list:
     get:
       tags:
@@ -3116,6 +3192,128 @@ paths:
           $ref: '#/components/responses/ApiResponse'
         default:
           $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.list:
+    get:
+      tags:
+        - companies
+      summary: Get company's application list
+      operationId: listCompanyApplications
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.read:
+    get:
+      tags:
+        - companies
+      summary: Query company's application infomration
+      operationId: queryCompanyApplicationInfo
+      parameters:
+        - name: name
+          in: query
+          description: Application ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.update:
+    post:
+      tags:
+        - companies
+      summary: Update company's application information
+      operationId: updateCompanyApplication
+      requestBody:
+        $ref: '#/components/requestBodies/Application'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.applications.remove:
+    post:
+      tags:
+        - companies
+      summary: Remove company's application
+      operationId: removeCompanyApplication
+      parameters:
+        - name: name
+          in: query
+          description: Application ID
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.list:
+    get:
+      tags:
+        - companies
+      summary: Get company's configuration list
+      operationId: listCompanyConfigurations
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.read:
+    get:
+      tags:
+        - companies
+      summary: Query company's configuration infomration
+      operationId: queryCompanyConfigurationInfo
+      parameters:
+        - name: name
+          in: query
+          description: Configuration ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.update:
+    post:
+      tags:
+        - companies
+      summary: Update company's configuration information
+      operationId: updateCompanyConfiguration
+      requestBody:
+        $ref: '#/components/requestBodies/Configuration'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.configurations.remove:
+    post:
+      tags:
+        - companies
+      summary: Remove company's configuration
+      operationId: removeCompanyConfiguration
+      parameters:
+        - name: name
+          in: query
+          description: Configuration ID
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /pushers.test:
     post:
       tags:
@@ -3707,7 +3905,7 @@ paths:
   /developers.requisition.update_id_card_image:
     post:
       tags:
-        - companies
+        - developers
       summary: Update developer requisition id card image file
       operationId: updateDeveloperRequisitionImageInfo
       requestBody:
@@ -5052,6 +5250,18 @@ components:
         devices:
           type: array
           description: DeviceShareGroupDevice.
+    CompanyInvitation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Company invitation id
+        company:
+          type: string
+          description: Company ID
+        user:
+          type: string
+          description: User ID
   requestBodies:
     UserSignup:
       content:
@@ -5213,6 +5423,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GatewayShareGroup'
+    CompanyInvitation:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CompanyInvitation'
   responses:
     ApiResponse:
       description: successful operation
