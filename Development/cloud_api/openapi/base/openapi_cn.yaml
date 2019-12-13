@@ -5078,16 +5078,19 @@ components:
         user:
           type: string
           description: 用户ID
-        nickname:
+        dev_name:
           type: string
-          description: 开发者短名称
+          description: 开发者名称（字母下划线).
+        id_name:
+          type: string
+          description: 开发者身份证名称
         id_card:
           type: string
-          description: 开发者身份证信息.
+          description: 开发者身份证号.
         id_card_image:
           type: string
           description: 开发者身份证照片.
-        addess:
+        address:
           type: string
           description: 开发者住址/联系地址
         pay_bank:
@@ -5105,16 +5108,19 @@ components:
         user:
           type: string
           description: 用户ID
-        nickname:
+        dev_name:
           type: string
-          description: 开发者短名称
+          description: 开发者名称（字母下划线).
+        id_name:
+          type: string
+          description: 开发者身份证名称
         id_card:
           type: string
-          description: 开发者身份证信息.
+          description: 开发者身份证号.
         id_card_image:
           type: string
           description: 开发者身份证照片.
-        addess:
+        address:
           type: string
           description: 开发者住址/联系地址
         pay_bank:
@@ -5126,13 +5132,16 @@ components:
     AppDeveloperNew:
       type: object
       properties:
-        nickname:
+        dev_name:
           type: string
-          description: 开发者短名称.
+          description: 开发者名称（字母下划线).
+        id_name:
+          type: string
+          description: 开发者身份证名称
         id_card:
           type: string
-          description: 开发者身份证信息.
-        addess:
+          description: 开发者身份证号.
+        address:
           type: string
           description: 开发者住址/联系地址
         pay_bank:
@@ -5164,13 +5173,16 @@ components:
         user:
           type: string
           description: 开发者用户ID.
-        nickname:
+        dev_name:
           type: string
-          description: 开发者短名称.
+          description: 开发者名称（字母下划线).
+        id_name:
+          type: string
+          description: 开发者身份证名称
         id_card:
           type: string
-          description: 开发者身份证信息.
-        addess:
+          description: 开发者身份证号.
+        address:
           type: string
           description: 开发者住址/联系地址
         pay_bank:

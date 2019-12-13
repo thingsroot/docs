@@ -5081,16 +5081,19 @@ components:
         user:
           type: string
           description: User ID
-        nickname:
+        dev_name:
           type: string
-          description: Developer Nickname.
+          description: Developer name.
+        id_name:
+          type: string
+          description: Developer ID Name.
         id_card:
           type: string
           description: Developer ID Card.
         id_card_image:
           type: string
           description: Developer ID Card Image.
-        addess:
+        address:
           type: string
           description: Developer address information.
         pay_bank:
@@ -5108,16 +5111,19 @@ components:
         user:
           type: string
           description: Developer user id.
-        nickname:
+        dev_name:
           type: string
-          description: Developer Nickname.
+          description: Developer name.
+        id_name:
+          type: string
+          description: Developer ID Name.
         id_card:
           type: string
           description: Developer ID Card.
         id_card_image:
           type: string
           description: Developer ID Card Image.
-        addess:
+        address:
           type: string
           description: Developer address information.
         pay_bank:
@@ -5129,13 +5135,16 @@ components:
     AppDeveloperNew:
       type: object
       properties:
-        nickname:
+        dev_name:
           type: string
-          description: Developer Nickname.
+          description: Developer name.
+        id_name:
+          type: string
+          description: Developer ID Name.
         id_card:
           type: string
           description: Developer ID Card.
-        addess:
+        address:
           type: string
           description: Developer address information.
         pay_bank:
@@ -5167,13 +5176,16 @@ components:
         user:
           type: string
           description: Developer user id.
-        nickname:
+        dev_name:
           type: string
-          description: Developer Nickname.
+          description: Developer name.
+        id_name:
+          type: string
+          description: Developer ID Name.
         id_card:
           type: string
           description: Developer ID Card.
-        addess:
+        address:
           type: string
           description: Developer address information.
         pay_bank:
