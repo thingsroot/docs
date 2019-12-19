@@ -2024,6 +2024,102 @@ paths:
           $ref: '#/components/responses/ApiResponse'
         default:
           $ref: '#/components/responses/ApiExceptionResponse'
+  /gateways.devices.history_data:
+    get:
+      tags:
+        - gateways
+      summary: Query device input history data
+      operationId: queryGatewayDeviceInputHistory
+      parameters:
+        - name: gateway
+          in: query
+          description: Gateway ID ( serial number )
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Device ID
+          required: true
+          schema:
+            type: string
+        - name: input
+          in: query
+          description: Device input name
+          required: true
+          schema:
+            type: string
+        - name: vt
+          in: query
+          description: Input value type
+          required: false
+          schema:
+            type: string
+            enum:
+              - float
+              - int
+              - string
+        - name: time_condition
+          in: query
+          description: Time condition (e.g. time > '2019-12-19 15:00:00' AND time < '2019-12-19 15:10:00')
+          default: time > now() - 10m
+          required: false
+          schema:
+            type: string
+        - name: value_method
+          in: query
+          description: Value calculation method
+          default: raw
+          required: false
+          schema:
+            type: string
+            enum:
+              - raw
+              - mean
+              - max
+              - min
+              - first
+              - last
+              - sum
+              - count
+        - name: group_time_span
+          in: query
+          description: Calculation group time
+          default: 1m
+          required: false
+          schema:
+            type: string
+        - name: fill_method
+          in: query
+          description: If value source is empty, the filled value method
+          default: none
+          required: false
+          schema:
+            type: string
+            enum:
+              - null
+              - previous
+              - none
+              - linear
+        - name: count_limit
+          in: query
+          description: Value count limit
+          default: 1000
+          required: false
+          schema:
+            type: number
+        - name: time_zone
+          in: query
+          description: Timestamp time zone
+          default: Asia/Shanghai
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /gateways.devices.output:
     post:
       tags:
