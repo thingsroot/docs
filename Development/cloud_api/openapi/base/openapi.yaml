@@ -3288,6 +3288,93 @@ paths:
           $ref: '#/components/responses/ApiResponse'
         default:
           $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.employees.list:
+    get:
+      tags:
+        - companies
+      summary: Get company's employee list
+      operationId: listCompanyEmployees
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.employees.create:
+    post:
+      tags:
+        - companies
+      summary: Create new company employee user account
+      operationId: createCompanyEmployee
+      requestBody:
+        $ref: '#/components/requestBodies/CompanyEmployeeNew'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.employees.invite:
+    post:
+      tags:
+        - companies
+      summary: Invite exists user to be an employee account
+      operationId: inviteCompanyEmployee
+      requestBody:
+        $ref: '#/components/requestBodies/CompanyInvitationNew'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.employees.read:
+    get:
+      tags:
+        - companies
+      summary: Query company's employee infomration
+      operationId: queryCompanyEmployeeInfo
+      parameters:
+        - name: name
+          in: query
+          description: Employee ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.employees.update:
+    post:
+      tags:
+        - companies
+      summary: Update company's employee information
+      operationId: updateCompanyEmployee
+      requestBody:
+        $ref: '#/components/requestBodies/Configuration'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /companies.employees.remove:
+    post:
+      tags:
+        - companies
+      summary: Remove company's employee
+      operationId: removeCompanyEmployee
+      parameters:
+        - name: name
+          in: query
+          description: Configuration ID
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /companies.applications.list:
     get:
       tags:
@@ -4258,6 +4345,48 @@ components:
         new_password:
           type: string
           description: User Password
+    CompanyEmployeeNew:
+      type: object
+      properties:
+        company:
+          type: string
+          description: Company ID
+        user:
+          type: string
+          description: User ID
+    CompanyEmployee:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Company Employee ID
+        company:
+          type: string
+          description: Company ID
+        user:
+          type: string
+          description: User ID
+    CompanyInvitationNew:
+      type: object
+      properties:
+        company:
+          type: string
+          description: Company ID
+        user:
+          type: string
+          description: User ID
+    CompanyInvitation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Company invitation id
+        company:
+          type: string
+          description: Company ID
+        user:
+          type: string
+          description: User ID
     CompanyGroupUser:
       type: object
       properties:
@@ -5358,18 +5487,6 @@ components:
         devices:
           type: array
           description: DeviceShareGroupDevice.
-    CompanyInvitation:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Company invitation id
-        company:
-          type: string
-          description: Company ID
-        user:
-          type: string
-          description: User ID
   requestBodies:
     UserSignup:
       content:
@@ -5531,6 +5648,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GatewayShareGroup'
+    CompanyEmployeeNew:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CompanyEmployeeNew'
+    CompanyEmployee:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CompanyEmployee'
+    CompanyInvitationNew:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CompanyInvitationNew'
     CompanyInvitation:
       content:
         application/json:
