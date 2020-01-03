@@ -4666,6 +4666,9 @@ components:
         company:
           type: string
           description: Company ID
+        category:
+          type: string
+          description: Application category
     Application:
       type: object
       properties:
@@ -4727,6 +4730,9 @@ components:
         company:
           type: string
           description: Company ID
+        category:
+          type: string
+          description: Application category
     ApplicationVersionNew:
       type: object
       properties:

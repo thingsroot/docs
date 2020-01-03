@@ -4666,6 +4666,9 @@ components:
         company:
           type: string
           description: 公司 ID
+        category:
+          type: string
+          description: 应用分类
     Application:
       type: object
       properties:
@@ -4727,6 +4730,9 @@ components:
         company:
           type: string
           description: 所属公司 ID
+        category:
+          type: string
+          description: 应用分类
     ApplicationVersionNew:
       type: object
       properties:
