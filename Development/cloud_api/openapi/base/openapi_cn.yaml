@@ -2363,6 +2363,36 @@ paths:
           $ref: '#/components/responses/ApiResponse'
         default:
           $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.categories.list:
+    get:
+      tags:
+        - applications
+      summary: 获取应用分类列表
+      operationId: listApplicationCategories
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.categories.read:
+    get:
+      tags:
+        - applications
+      summary: 获取应用分类信息
+      operationId: queryApplicationCategoryInfo
+      parameters:
+        - name: name
+          in: query
+          description: 应用分类
+          required: true
+          schema:
+            type: string
+            default: Test
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /applications.versions.test:
     post:
       tags:

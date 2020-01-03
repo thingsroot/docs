@@ -2363,6 +2363,36 @@ paths:
           $ref: '#/components/responses/ApiResponse'
         default:
           $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.categories.list:
+    get:
+      tags:
+        - applications
+      summary: Get application category list
+      operationId: listApplicationCategories
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.categories.read:
+    get:
+      tags:
+        - applications
+      summary: Query application category infomration
+      operationId: queryApplicationCategoryInfo
+      parameters:
+        - name: name
+          in: query
+          description: Application category
+          required: true
+          schema:
+            type: string
+            default: Test
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /applications.versions.test:
     post:
       tags:
