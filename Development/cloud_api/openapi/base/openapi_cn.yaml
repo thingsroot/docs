@@ -2254,6 +2254,82 @@ paths:
           $ref: '#/components/responses/ApiResponse'
         default:
           $ref: '#/components/responses/ApiExceptionResponse'
+  /gateways.shares.list:
+    get:
+      tags:
+        - gateways
+      summary: 获取网关临时共享列表
+      operationId: listGatewayShares
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /gateways.shares.create:
+    post:
+      tags:
+        - gateways
+      summary: 创建网关临时共享
+      operationId: addGatewayShares
+      requestBody:
+        $ref: '#/components/requestBodies/GatewayShareNew'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /gateways.shares.read:
+    get:
+      tags:
+        - gateways
+      summary: 读取网关临时共享信息
+      operationId: queryGatewayShares
+      parameters:
+        - name: name
+          in: query
+          description: Gateway ID ( serial number )
+          required: true
+          schema:
+            type: string
+            default: xxxxxxxxxx
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /gateways.shares.update:
+    post:
+      tags:
+        - gateways
+      summary: 更新网关临时共享信息
+      operationId: updateGatewayShares
+      requestBody:
+        $ref: '#/components/requestBodies/GatewayShare'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /gateways.shares.remove:
+    post:
+      tags:
+        - gateways
+      summary: 删除网关临时共享信息
+      operationId: removeGatewayShares
+      parameters:
+        - name: name
+          in: query
+          description: Gateway ID ( serial number )
+          required: true
+          explode: true
+          schema:
+            type: string
+            default: xxxxxxxxxx
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /applications.test:
     post:
       tags:
@@ -4604,6 +4680,35 @@ components:
           type: string
           format: date-time
           description: 设备开启Beta模式的时间
+    GatewayShareNew:
+      type: object
+      properties:
+        device:
+          type: string
+          description: 网关序列号
+        share_to:
+          type: string
+          description: 被共享的用户 ID
+        end_time:
+          type: string
+          description: 共享结束时间
+          type: string
+    GatewayShareGroupDevice:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Gateway Share name
+        device:
+          type: string
+          description: 网关序列号
+        share_to:
+          type: string
+          description: 被共享的用户 ID
+        end_time:
+          type: string
+          description: 共享结束时间
+          type: string
     UserSignup:
       type: object
       properties:
