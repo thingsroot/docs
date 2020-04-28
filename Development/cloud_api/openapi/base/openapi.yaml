@@ -4692,7 +4692,21 @@ components:
         end_time:
           type: string
           description: End time of gateway share
+    GatewayShare:
+      type: object
+      properties:
+        name:
           type: string
+          description: Gateway name
+        device:
+          type: string
+          description: Gateway SN
+        share_to:
+          type: string
+          description: User id to share with
+        end_time:
+          type: string
+          description: End time of gateway share
     GatewayShareGroupDevice:
       type: object
       properties:
@@ -4708,7 +4722,6 @@ components:
         end_time:
           type: string
           description: End time of gateway share
-          type: string
     UserSignup:
       type: object
       properties:
@@ -5789,6 +5802,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GatewayShareGroup'
+    GatewayShare:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GatewayShare'
+    GatewayShareNew:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GatewayShareNew'
     CompanyEmployeeNew:
       content:
         application/json:

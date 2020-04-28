@@ -4692,7 +4692,6 @@ components:
         end_time:
           type: string
           description: 共享结束时间
-          type: string
     GatewayShareGroupDevice:
       type: object
       properties:
@@ -4708,7 +4707,6 @@ components:
         end_time:
           type: string
           description: 共享结束时间
-          type: string
     UserSignup:
       type: object
       properties:
@@ -5789,6 +5787,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GatewayShareGroup'
+    GatewayShare:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GatewayShare'
+    GatewayShareNew:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GatewayShareNew'
     CompanyEmployeeNew:
       content:
         application/json:
