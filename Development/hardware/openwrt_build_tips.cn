@@ -1,0 +1,25 @@
+0. 我们软件的OpenWRT软件包库
+	https://github.com/kooiot/packages_ex
+	
+1. 需要的运行库和工具包（以下名称都是openwrt包名)
+	1) libstdcpp
+	2) luci
+	3) libopenssl
+	4) libcurl
+	5) zip
+	6) unzip
+	7) zlib
+	8) process-monitor (参考我们软件包库)
+	9) tinc
+	
+2. 需要的静态库
+	1) libiconv-full-full (参考我们软件包库, 我们需要staging_dir里面生成好的iconv.h, libiconv.a 和 libcharset.a)
+	
+3. 内核配置需求
+	1) DEVTMPFS (参考我们软件包库中的focas_ubus去增加内核配置)
+	
+
+4. 其他问题
+	1) 需要提供4G配置页面(Luci网页）
+	2) 需要提供固件在线升级(Luci网页）
+	3) 需要能够获取4G详细状态信息，如LTE信号强度，CCID, IMEI等等信息.

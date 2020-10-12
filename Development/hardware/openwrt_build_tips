@@ -1,0 +1,25 @@
+0. Our own package repo
+	https://github.com/kooiot/packages_ex
+	
+1. Runtime libraries
+	1) libstdcpp
+	2) luci
+	3) libopenssl
+	4) libcurl
+	5) zip
+	6) unzip
+	7) zlib
+	8) process-monitor (in our package repo)
+	9) tinc
+	
+2. Static libraries
+	1) libiconv-full-full (in our package repo, we need the genereated iconv.h, libiconv.a and libcharset.a from the staging_dir)
+	
+3. Kernel Configuration required
+	1) DEVTMPFS (refere to focas_ubus' Makefile in our package repo)
+	
+
+4. Others
+	1) 4G configuration options in Luci web
+	2) System upgrade via Luci web
+	3) 4G information reading interfaces (e.g. 3ginfo or anything that we cloud read the LTE signal length, CCID stuff and so on)
