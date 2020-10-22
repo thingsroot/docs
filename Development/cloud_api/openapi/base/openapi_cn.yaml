@@ -2578,6 +2578,58 @@ paths:
           $ref: '#/components/responses/ApiResponse'
         default:
           $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.versions.beta:
+    get:
+      tags:
+        - applications
+      summary: Get application version beta flag (returns flag as integer 0 or 1)
+      operationId: getApplicationVersionBeta
+      parameters:
+        - name: app
+          in: query
+          description: Application ID
+          required: true
+          schema:
+            type: string
+            default: APP00000001
+        - name: version
+          in: query
+          description: Version
+          required: true
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.versions.release:
+    get:
+      tags:
+        - applications
+      summary: Change version from beta to release
+      operationId: setApplicationVersionRelease
+      parameters:
+        - name: app
+          in: query
+          description: Application ID
+          required: true
+          schema:
+            type: string
+            default: APP00000001
+        - name: version
+          in: query
+          description: Version
+          required: true
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
   /applications.forks.create:
     get:
       tags:

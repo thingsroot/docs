@@ -2428,7 +2428,7 @@ paths:
       parameters:
         - name: name
           in: query
-          description: Applicaton ID
+          description: Application ID
           required: true
           explode: true
           schema:
@@ -2488,7 +2488,7 @@ paths:
       parameters:
         - name: app
           in: query
-          description: Applicaton ID
+          description: Application ID
           schema:
             type: string
             default: APP00000001
@@ -2538,7 +2538,7 @@ paths:
       parameters:
         - name: name
           in: query
-          description: Applicaton Version ID
+          description: Application Version ID
           required: true
           explode: true
           schema:
@@ -2558,7 +2558,7 @@ paths:
       parameters:
         - name: app
           in: query
-          description: Applicaton ID
+          description: Application ID
           required: true
           schema:
             type: string
@@ -2573,6 +2573,58 @@ paths:
             enum:
               - 0
               - 1
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.versions.beta:
+    get:
+      tags:
+        - applications
+      summary: Get application version beta flag (returns flag as integer 0 or 1)
+      operationId: getApplicationVersionBeta
+      parameters:
+        - name: app
+          in: query
+          description: Application ID
+          required: true
+          schema:
+            type: string
+            default: APP00000001
+        - name: version
+          in: query
+          description: Version
+          required: true
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        default:
+          $ref: '#/components/responses/ApiExceptionResponse'
+  /applications.versions.release:
+    get:
+      tags:
+        - applications
+      summary: Change version from beta to release
+      operationId: setApplicationVersionRelease
+      parameters:
+        - name: app
+          in: query
+          description: Application ID
+          required: true
+          schema:
+            type: string
+            default: APP00000001
+        - name: version
+          in: query
+          description: Version
+          required: true
+          schema:
+            type: integer
+            default: 0
       responses:
         '200':
           $ref: '#/components/responses/ApiResponse'
@@ -2613,7 +2665,7 @@ paths:
       parameters:
         - name: name
           in: query
-          description: Applicaton ID
+          description: Application ID
           required: true
           schema:
             type: string
@@ -3819,7 +3871,7 @@ paths:
       parameters:
         - name: app
           in: query
-          description: Applicaton ID
+          description: Application ID
           required: false
           schema:
             type: string
